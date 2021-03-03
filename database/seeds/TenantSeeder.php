@@ -13,12 +13,10 @@ class TenantSeeder extends Seeder
     public function run()
     {
         Tenant::create([
-            'id'=>1,
-
+           'id'=>1,
         ]);
         Tenant::create([
             'id'=>2,
-
         ]);
 
         Tenant::all()->runForEach(function () {

@@ -14,13 +14,13 @@ class DomainSeeder extends Seeder
     {
         Domain::create([
             'id'=>1,
-            'domain'=>'foo.saas.test',
+            'domain'=>'foo.test',
             'tenant_id' => 2
 
         ]);
         Domain::create([
-            'id'=>1,
-            'domain'=>'bar.saas.test',
+            'id'=>2,
+            'domain'=>'bar.test',
             'tenant_id' => 1
 
         ]);

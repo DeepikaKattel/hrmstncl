@@ -18,6 +18,7 @@ use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 |
 */
 
+
 Route::middleware([
     'web',
     InitializeTenancyByDomain::class,
@@ -27,4 +28,6 @@ Route::middleware([
         dd(\App\User::all());
         return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
     });
+
+
 });
