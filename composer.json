@@ -15,7 +15,9 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.4",
-        "stancl/tenancy": "^3.4"
+        "predis/predis": "^1.1",
+        "stancl/tenancy": "^3.4",
+        "tcg/voyager": "^1.4"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
@@ -61,5 +63,11 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ]
+    },
+    "repositories": {
+        "hooks": {
+            "type": "composer",
+            "url": "https://larapack.io"
+        }
     }
 }

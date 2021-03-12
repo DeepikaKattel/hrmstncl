@@ -10,12 +10,12 @@ class TenantController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     *conf
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return view('tenant.home');
     }
 
     /**
@@ -25,7 +25,7 @@ class TenantController extends Controller
      */
     public function create()
     {
-        //
+        return view('tenant.create');
     }
 
     /**
