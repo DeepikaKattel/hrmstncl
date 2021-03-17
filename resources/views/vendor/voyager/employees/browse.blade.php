@@ -3,6 +3,8 @@
 @section('page_title', __('voyager::generic.viewing').' '.$dataType->getTranslatedAttribute('display_name_plural'))
 
 @section('page_header')
+
+
     <div class="container-fluid">
         <h1 class="page-title">
             <i class="{{ $dataType->icon }}"></i> {{ $dataType->getTranslatedAttribute('display_name_plural') }}
@@ -37,6 +39,29 @@
 @stop
 
 @section('content')
+    {!! menu('EmployeeMenu','menu.employee') !!}
+    <div class="page-content browse container-fluid">
+    @foreach($employee as $emp)
+        <div class="card">
+            <div class="col-lg-12 col-md-12 col-12">
+                <div class="card-body">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td> <img src="/storage/{{$emp->avatar}}" height="80px" width="80px"></td>
+                                <td>{{$emp->name}}</td>
+                                <td>{{$emp->designation}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    @endforeach
+    </div>
+
     <div class="page-content browse container-fluid">
         @include('voyager::alerts')
         <div class="row">
@@ -84,6 +109,7 @@
                                         </th>
                                     @endif
                                     @foreach($dataType->browseRows as $row)
+
                                         <th>
                                             @if ($isServerSide && $row->type !== 'relationship')
                                                 <a href="{{ $row->sortByUrl($orderBy, $sortOrder) }}">
@@ -100,6 +126,7 @@
                                                 </a>
                                             @endif
                                         </th>
+
                                     @endforeach
                                     <th class="actions text-right dt-not-orderable">{{ __('voyager::generic.actions') }}</th>
                                 </tr>
