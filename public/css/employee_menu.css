@@ -93,6 +93,11 @@ a:focus{
 table td{
     padding:20px;
 }
+.image{
+    height:100%;
+    width:100%;
+    z-index:9999;
+}
 
 
                                                                                                                                                                                                                                                                                     License Terms

@@ -44,16 +44,21 @@
     @foreach($employee as $emp)
         <div class="card">
             <div class="col-lg-12 col-md-12 col-12">
-                <div class="card-body">
-                    <table>
-                        <tbody>
+                <div class="row justify-content-center">
+                    <div class="col-lg-2 col-md-2 col-12">
+                        <img src="/storage/{{$emp->avatar}}" class="img-thumbnail">
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-12">
+                        <table>
+                            <tbody>
                             <tr>
-                                <td> <img src="/storage/{{$emp->avatar}}" height="80px" width="80px"></td>
                                 <td>{{$emp->name}}</td>
                                 <td>{{$emp->designation}}</td>
                             </tr>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
+
 
 
                 </div>
