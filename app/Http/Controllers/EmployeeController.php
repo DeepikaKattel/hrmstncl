@@ -897,4 +897,8 @@ class EmployeeController extends \TCG\Voyager\Http\Controllers\VoyagerBaseContro
         // No result found, return empty array
         return response()->json([], 404);
     }
+
+    public function manager(Request $request){
+        return view('vendor.voyager.employees.manager');
+    }
 }

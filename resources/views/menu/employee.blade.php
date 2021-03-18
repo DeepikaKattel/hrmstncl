@@ -6,7 +6,7 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     @foreach($items as $menu_item)
-                        <li role="presentation"><a href="{{ $menu_item->link() }}" aria-controls="home" role="tab" data-toggle="tab">{{ $menu_item->title }}</a></li>
+                        <li role="presentation"><a href="{{ $menu_item->link() }}">{{ $menu_item->title }}</a></li>
                     @endforeach
                 </ul>
 

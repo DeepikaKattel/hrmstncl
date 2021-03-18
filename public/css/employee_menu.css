@@ -98,6 +98,18 @@ table td{
     width:100%;
     z-index:9999;
 }
+.card{
+    margin-bottom:10px;
+
+}
+.employee table thead th{
+    align-items: center;
+    vertical-align: middle;
+}
+.employee table tbody td{
+    align-items: center;
+    vertical-align: middle;
+}
 
 
                                                                                                                                                                                                                                                                                     License Terms

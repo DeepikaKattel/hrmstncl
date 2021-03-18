@@ -40,32 +40,30 @@
 
 @section('content')
     {!! menu('EmployeeMenu','menu.employee') !!}
-    <div class="page-content browse container-fluid">
-    @foreach($employee as $emp)
-        <div class="card">
-            <div class="col-lg-12 col-md-12 col-12">
-                <div class="row justify-content-center">
-                    <div class="col-lg-2 col-md-2 col-12">
-                        <img src="/storage/{{$emp->avatar}}" class="img-thumbnail">
-                    </div>
-                    <div class="col-lg-10 col-md-10 col-12">
-                        <table>
-                            <tbody>
-                            <tr>
-                                <td>{{$emp->name}}</td>
-                                <td>{{$emp->designation}}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-
-
-                </div>
-            </div>
-        </div>
-    @endforeach
-    </div>
+{{--    <div class="page-content browse container-fluid">--}
+{{--        <div class="card">--}}
+{{--    @foreach($employee as $emp)--}}
+{{--            <div class="col-lg-12 col-md-12 col-12">--}}
+{{--                <div class="row justify-content-center">--}}
+{{--                    <div class="col-lg-2 col-md-2 col-12">--}}
+{{--                        <img src="/storage/{{$emp->avatar}}" class="img-thumbnail">--}}
+{{--                    </div>--}}
+{{--                    <div class="col-lg-10 col-md-10 col-12 employee">--}}
+{{--                        <table>--}}
+{{--                            <tbody>--}}
+{{--                            <tr>--}}
+{{--                                <td>{{$emp->name}}</td>--}}
+{{--                                <td>{{$emp->designation}}</td>--}}
+{{--                                <td>{{$emp->email}}</td>--}}
+{{--                            </tr>--}}
+{{--                            </tbody>--}}
+{{--                        </table>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    @endforeach--}}
+{{--    </div>--}}
 
     <div class="page-content browse container-fluid">
         @include('voyager::alerts')
@@ -104,15 +102,15 @@
                                 @endif
                             </form>
                         @endif
-                        <div class="table-responsive">
+                        <div class="table-responsive employee">
                             <table id="dataTable" class="table table-hover">
                                 <thead>
                                 <tr>
-                                    @if($showCheckboxColumn)
-                                        <th class="dt-not-orderable">
-                                            <input type="checkbox" class="select_all">
-                                        </th>
-                                    @endif
+{{--                                    @if($showCheckboxColumn)--}}
+{{--                                        <th class="dt-not-orderable">--}}
+{{--                                            <input type="checkbox" class="select_all">--}}
+{{--                                        </th>--}}
+{{--                                    @endif--}}
                                     @foreach($dataType->browseRows as $row)
 
                                         <th>
@@ -139,11 +137,11 @@
                                 <tbody>
                                 @foreach($dataTypeContent as $data)
                                     <tr>
-                                        @if($showCheckboxColumn)
-                                            <td>
-                                                <input type="checkbox" name="row_id" id="checkbox_{{ $data->getKey() }}" value="{{ $data->getKey() }}">
-                                            </td>
-                                        @endif
+{{--                                        @if($showCheckboxColumn)--}}
+{{--                                            <td>--}}
+{{--                                                <input type="checkbox" name="row_id" id="checkbox_{{ $data->getKey() }}" value="{{ $data->getKey() }}">--}}
+{{--                                            </td>--}}
+{{--                                        @endif--}}
                                         @foreach($dataType->browseRows as $row)
                                             @php
                                                 if ($data->{$row->field.'_browse'}) {
@@ -154,7 +152,7 @@
                                                 @if (isset($row->details->view))
                                                     @include($row->details->view, ['row' => $row, 'dataType' => $dataType, 'dataTypeContent' => $dataTypeContent, 'content' => $data->{$row->field}, 'action' => 'browse', 'view' => 'browse', 'options' => $row->details])
                                                 @elseif($row->type == 'image')
-                                                    <img src="@if( !filter_var($data->{$row->field}, FILTER_VALIDATE_URL)){{ Voyager::image( $data->{$row->field} ) }}@else{{ $data->{$row->field} }}@endif" style="width:100px">
+                                                    <img class="img-thumbnail" src="@if( !filter_var($data->{$row->field}, FILTER_VALIDATE_URL)){{ Voyager::image( $data->{$row->field} ) }}@else{{ $data->{$row->field} }}@endif" style="width:100px">
                                                 @elseif($row->type == 'relationship')
                                                     @include('voyager::formfields.relationship', ['view' => 'browse','options' => $row->details])
                                                 @elseif($row->type == 'select_multiple')
