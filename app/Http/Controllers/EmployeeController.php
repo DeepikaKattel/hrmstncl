@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Department;
 use App\Employee;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class EmployeeController extends \TCG\Voyager\Http\Controllers\VoyagerBaseContro
      */
     public function index(Request $request)
     {
-        $employee = \App\Employee::get();
+        $employee = \App\Employee::with('department')->get();
         // GET THE SLUG, ex. 'posts', 'pages', etc.
         $slug = $this->getSlug($request);
 
@@ -184,6 +185,10 @@ class EmployeeController extends \TCG\Voyager\Http\Controllers\VoyagerBaseContro
     {
         $slug = $this->getSlug($request);
 
+        $department = Department::get();
+
+
+
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
 
         // Check permission
@@ -212,7 +217,7 @@ class EmployeeController extends \TCG\Voyager\Http\Controllers\VoyagerBaseContro
             $view = "voyager::$slug.edit-add";
         }
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable','department'));
     }
 
     /**
@@ -318,6 +323,7 @@ class EmployeeController extends \TCG\Voyager\Http\Controllers\VoyagerBaseContro
     public function edit(Request $request, $id)
     {
         $slug = $this->getSlug($request);
+        $department = Department::get();
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
 
@@ -359,7 +365,7 @@ class EmployeeController extends \TCG\Voyager\Http\Controllers\VoyagerBaseContro
             $view = "voyager::$slug.edit-add";
         }
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable','department'));
     }
 
     /**
@@ -899,6 +905,15 @@ class EmployeeController extends \TCG\Voyager\Http\Controllers\VoyagerBaseContro
     }
 
     public function manager(Request $request){
+
         return view('vendor.voyager.employees.manager');
+    }
+    public function department(Request $request){
+
+        return view('vendor.voyager.employees.department');
+    }
+    public function leave_management(Request $request){
+
+        return view('vendor.voyager.employees.leave_management');
     }
 }

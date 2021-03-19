@@ -56,6 +56,16 @@
                                 <input type="text" class="form-control" id="designation" name="designation" placeholder="{{ __('Designation') }}"
                                        value="{{ old('designation', $dataTypeContent->designation ?? '') }}">
                             </div>
+                            <div class="form-group">
+                                <label for="designation">{{ __('Department') }}</label>
+                                <select class="form-control" id="department_id" name="department_id" required>
+                                    <option value="">--Select Department--</option>
+
+                                    @foreach($department as $dept)
+                                    <option value="{{$dept->id}}">{{$dept->name}}</option>
+                                        @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>

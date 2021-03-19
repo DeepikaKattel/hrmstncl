@@ -3,17 +3,16 @@
 @section('page_title', __('voyager::generic.viewing').' '.$dataType->getTranslatedAttribute('display_name_plural'))
 
 @section('page_header')
-
-
     <div class="container-fluid">
         <h1 class="page-title">
             <i class="{{ $dataType->icon }}"></i> {{ $dataType->getTranslatedAttribute('display_name_plural') }}
         </h1>
         @can('add', app($dataType->model_name))
-
             <a href="{{ route('voyager.'.$dataType->slug.'.create') }}" class="btn btn-success btn-add-new">
                 <i class="voyager-plus"></i> <span>{{ __('voyager::generic.add_new') }}</span>
             </a>
+
+
         @endcan
         @can('delete', app($dataType->model_name))
             @include('voyager::partials.bulk-delete')
@@ -41,33 +40,6 @@
 
 @section('content')
     {!! menu('EmployeeMenu','menu.employee') !!}
-    @foreach($employee as $emp)
-    <div class="page-content browse container-fluid">
-        <div class="card employee">
-
-            <div class="col-lg-12 col-md-12 col-12">
-                <div class="row justify-content-center">
-                    <div class="col-lg-2 col-md-2 col-12 ">
-                        <img src="/storage/{{$emp->avatar}}" class="img-thumbnail clip-circle" height="100px" width="100px">
-                    </div>
-                    <div class="col-lg-10 col-md-10 col-12 employee">
-                        <table>
-                            <tbody>
-                            <tr>
-                                <td>{{$emp->name}}</td>
-                                <td>{{$emp->designation}}</td>
-                                <td>{{$emp->email}}</td>
-                                <td>{{$emp->department->name}}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endforeach
-
     <div class="page-content browse container-fluid">
         @include('voyager::alerts')
         <div class="row">
@@ -105,17 +77,16 @@
                                 @endif
                             </form>
                         @endif
-                        <div class="table-responsive employee">
+                        <div class="table-responsive">
                             <table id="dataTable" class="table table-hover">
                                 <thead>
                                 <tr>
-{{--                                    @if($showCheckboxColumn)--}}
-{{--                                        <th class="dt-not-orderable">--}}
-{{--                                            <input type="checkbox" class="select_all">--}}
-{{--                                        </th>--}}
-{{--                                    @endif--}}
+                                    @if($showCheckboxColumn)
+                                        <th class="dt-not-orderable">
+                                            <input type="checkbox" class="select_all">
+                                        </th>
+                                    @endif
                                     @foreach($dataType->browseRows as $row)
-
                                         <th>
                                             @if ($isServerSide && $row->type !== 'relationship')
                                                 <a href="{{ $row->sortByUrl($orderBy, $sortOrder) }}">
@@ -132,20 +103,18 @@
                                                 </a>
                                             @endif
                                         </th>
-
                                     @endforeach
                                     <th class="actions text-right dt-not-orderable">{{ __('voyager::generic.actions') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($dataTypeContent as $data)
-                                    <div class="card">
                                     <tr>
-{{--                                        @if($showCheckboxColumn)--}}
-{{--                                            <td>--}}
-{{--                                                <input type="checkbox" name="row_id" id="checkbox_{{ $data->getKey() }}" value="{{ $data->getKey() }}">--}}
-{{--                                            </td>--}}
-{{--                                        @endif--}}
+                                        @if($showCheckboxColumn)
+                                            <td>
+                                                <input type="checkbox" name="row_id" id="checkbox_{{ $data->getKey() }}" value="{{ $data->getKey() }}">
+                                            </td>
+                                        @endif
                                         @foreach($dataType->browseRows as $row)
                                             @php
                                                 if ($data->{$row->field.'_browse'}) {
@@ -156,7 +125,7 @@
                                                 @if (isset($row->details->view))
                                                     @include($row->details->view, ['row' => $row, 'dataType' => $dataType, 'dataTypeContent' => $dataTypeContent, 'content' => $data->{$row->field}, 'action' => 'browse', 'view' => 'browse', 'options' => $row->details])
                                                 @elseif($row->type == 'image')
-                                                    <img class="img-thumbnail" src="@if( !filter_var($data->{$row->field}, FILTER_VALIDATE_URL)){{ Voyager::image( $data->{$row->field} ) }}@else{{ $data->{$row->field} }}@endif" style="width:100px">
+                                                    <img src="@if( !filter_var($data->{$row->field}, FILTER_VALIDATE_URL)){{ Voyager::image( $data->{$row->field} ) }}@else{{ $data->{$row->field} }}@endif" style="width:100px">
                                                 @elseif($row->type == 'relationship')
                                                     @include('voyager::formfields.relationship', ['view' => 'browse','options' => $row->details])
                                                 @elseif($row->type == 'select_multiple')
@@ -292,7 +261,6 @@
                                             @endforeach
                                         </td>
                                     </tr>
-                                    </div>
                                 @endforeach
                                 </tbody>
                             </table>

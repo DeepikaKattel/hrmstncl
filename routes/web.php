@@ -30,5 +30,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin'], function () {
 
     Voyager::routes();
-    Route::get('employee/manager','EmployeeController@manager')->name('employee.manager');
+    Route::get('employee/manager','EmployeeController@manager')->name('employees.manager');
+    Route::get('employee/department','EmployeeController@department')->name('employees.department');
+    Route::get('employee/leave_management','EmployeeController@leave_management')->name('employees.leave_management');
 });

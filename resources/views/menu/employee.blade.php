@@ -1,7 +1,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-lg-12 col-md-12 col-12">
             <div class="tab" role="tabpanel">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
