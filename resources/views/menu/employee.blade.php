@@ -12,7 +12,7 @@
                 {{--original tabs--}}
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">Employee</a></li>
-                    <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Department</a></li>
+                    <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Employee Supervisor</a></li>
                     <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">Leave Management</a></li>
                 </ul>
             </div>

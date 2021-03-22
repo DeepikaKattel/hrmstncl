@@ -39,7 +39,7 @@
 @stop
 
 @section('content')
-    {!! menu('EmployeeMenu','menu.employee') !!}
+
     <div class="page-content browse container-fluid">
         @include('voyager::alerts')
         <div class="row">

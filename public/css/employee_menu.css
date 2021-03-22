@@ -113,12 +113,12 @@ table tr{
 }
 .employee table thead th{
     align-items: center;
-    font-size: 14px;
+    font-size: 13;
     vertical-align: middle;
 }
 .employee table tbody td{
     align-items: center;
-    font-size: 13px;
+    font-size: 12px;
     vertical-align: middle;
 }
 .overlay {
