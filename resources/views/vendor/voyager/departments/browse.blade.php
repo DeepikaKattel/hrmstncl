@@ -12,7 +12,6 @@
                 <i class="voyager-plus"></i> <span>{{ __('voyager::generic.add_new') }}</span>
             </a>
 
-
         @endcan
         @can('delete', app($dataType->model_name))
             @include('voyager::partials.bulk-delete')
@@ -77,7 +76,7 @@
                                 @endif
                             </form>
                         @endif
-                        <div class="table-responsive">
+                        <div class="table-responsive employee">
                             <table id="dataTable" class="table table-hover">
                                 <thead>
                                 <tr>
@@ -122,6 +121,7 @@
                                                 }
                                             @endphp
                                             <td>
+
                                                 @if (isset($row->details->view))
                                                     @include($row->details->view, ['row' => $row, 'dataType' => $dataType, 'dataTypeContent' => $dataTypeContent, 'content' => $data->{$row->field}, 'action' => 'browse', 'view' => 'browse', 'options' => $row->details])
                                                 @elseif($row->type == 'image')

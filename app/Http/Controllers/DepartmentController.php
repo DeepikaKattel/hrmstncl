@@ -25,7 +25,7 @@ class DepartmentController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCont
      */
     public function index()
     {
-        //
+
     }
 
     /**

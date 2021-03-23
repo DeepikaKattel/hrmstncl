@@ -26,6 +26,10 @@ class EmployeeController extends \TCG\Voyager\Http\Controllers\VoyagerBaseContro
     public function index(Request $request)
     {
         $employee = \App\Employee::with('department')->get();
+        $create = \App\Employee::with('department')->value('created_at');
+        $employed_date = $create->format('d M Y');
+
+
         // GET THE SLUG, ex. 'posts', 'pages', etc.
         $slug = $this->getSlug($request);
 
@@ -171,7 +175,9 @@ class EmployeeController extends \TCG\Voyager\Http\Controllers\VoyagerBaseContro
             'usesSoftDeletes',
             'showSoftDeleted',
             'showCheckboxColumn',
-            'employee'
+            'employee',
+            'employed_date'
+
         ));
 
     }
@@ -186,6 +192,7 @@ class EmployeeController extends \TCG\Voyager\Http\Controllers\VoyagerBaseContro
         $slug = $this->getSlug($request);
 
         $department = Department::get();
+
 
 
 
@@ -267,6 +274,8 @@ class EmployeeController extends \TCG\Voyager\Http\Controllers\VoyagerBaseContro
     {
         $slug = $this->getSlug($request);
 
+        $employee = \App\Employee::with('department')->where('id','=',$id)->first();
+
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
 
         $isSoftDeleted = false;
@@ -311,7 +320,7 @@ class EmployeeController extends \TCG\Voyager\Http\Controllers\VoyagerBaseContro
             $view = "voyager::$slug.read";
         }
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'isSoftDeleted'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'isSoftDeleted','employee'));
     }
 
     /**

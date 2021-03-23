@@ -18,8 +18,11 @@ class CreateEmployeesTable extends Migration
             $table->string('name');
             $table->string('designation');
             $table->string('email');
+            $table->string('phone');
+            $table->string('birthday');
+            $table->string('status')->default('Active');
             $table->unsignedBigInteger('department_id');
-            $table->foreign('department_id')->references('id')->on('departments');
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             $table->string('avatar')->nullable();
             $table->timestamps();
         });

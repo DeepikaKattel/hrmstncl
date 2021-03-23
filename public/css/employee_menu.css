@@ -113,13 +113,21 @@ table tr{
 }
 .employee table thead th{
     align-items: center;
-    font-size: 13;
+    font-size: 13px;
     vertical-align: middle;
 }
 .employee table tbody td{
     align-items: center;
+    /*font-weight: bold;*/
     font-size: 12px;
+    font-weight: 500;
     vertical-align: middle;
+}
+.employee p{
+    margin: 0 !important;
+}
+.badge-info{
+    padding-left:25px;
 }
 .overlay {
     position: absolute;
@@ -159,6 +167,9 @@ table tr{
 
 .card:hover{
     background: #e2e3e5;
+}
+.employee_info h5{
+    font-weight: bold;
 }
 
 

@@ -39,6 +39,7 @@
 {{--    <!-- Tab panes -->--}}
     <div class="tab-content tabs">
         <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+
 {{--            @foreach($employee as $emp)--}}
 {{--            <div class="page-content browse container-fluid">--}}
 {{--                <div class="card employee">--}}
@@ -133,6 +134,7 @@
         {{--                                    @endif--}}
                                             @foreach($dataType->browseRows as $row)
 
+
                                                 <th>
                                                     @if ($isServerSide && $row->type !== 'relationship')
                                                         <a href="{{ $row->sortByUrl($orderBy, $sortOrder) }}">
@@ -156,12 +158,14 @@
                                         </thead>
                                         <tbody>
                                         @foreach($dataTypeContent as $data)
+
                                             <tr class="card">
         {{--                                        @if($showCheckboxColumn)--}}
         {{--                                            <td>--}}
         {{--                                                <input type="checkbox" name="row_id" id="checkbox_{{ $data->getKey() }}" value="{{ $data->getKey() }}">--}}
         {{--                                            </td>--}}
         {{--                                        @endif--}}
+
                                                 @foreach($dataType->browseRows as $row)
                                                     @php
                                                         if ($data->{$row->field.'_browse'}) {
@@ -172,7 +176,8 @@
                                                         @if (isset($row->details->view))
                                                             @include($row->details->view, ['row' => $row, 'dataType' => $dataType, 'dataTypeContent' => $dataTypeContent, 'content' => $data->{$row->field}, 'action' => 'browse', 'view' => 'browse', 'options' => $row->details])
                                                         @elseif($row->type == 'image')
-                                                            <img class="img-thumbnail clip-circle" src="@if( !filter_var($data->{$row->field}, FILTER_VALIDATE_URL)){{ Voyager::image( $data->{$row->field} ) }}@else{{ $data->{$row->field} }}@endif" style="max-width:100px;">
+                                                            <div class="card badge-info font-weight-bold">{{ $employed_date}}-Employed</div>
+                                                            <img class="img-thumbnail" src="@if( !filter_var($data->{$row->field}, FILTER_VALIDATE_URL)){{ Voyager::image( $data->{$row->field} ) }}@else{{ $data->{$row->field} }}@endif" style="width:80px;height:80px">
                                                         @elseif($row->type == 'relationship')
                                                             @include('voyager::formfields.relationship', ['view' => 'browse','options' => $row->details])
                                                         @elseif($row->type == 'select_multiple')
@@ -308,8 +313,9 @@
                                                     @endforeach
                                                 </td>
                                             </tr>
+                                            @endforeach
 
-                                        @endforeach
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -339,11 +345,12 @@
             </div>
         </div>
         <div role="tabpanel" class="tab-pane fade" id="Section2">
-            <h3>SecKtion 2</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p>
+            <h3>Attendance</h3>
+{{--            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p>--}}
         </div>
         <div role="tabpanel" class="tab-pane fade" id="Section3">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p>
+            <h3>Leave Management</h3>
+{{--            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p>--}}
         </div>
     </div>
 
