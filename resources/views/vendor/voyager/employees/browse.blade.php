@@ -137,8 +137,6 @@
         {{--                                        </th>--}}
         {{--                                    @endif--}}
                                             @foreach($dataType->browseRows as $row)
-
-
                                                 <th>
 {{--                                                    @if ($isServerSide && $row->type !== 'relationship')--}}
 {{--                                                        <a href="{{ $row->sortByUrl($orderBy, $sortOrder) }}">--}}
